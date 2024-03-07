@@ -47,15 +47,17 @@ public class TestString {
         System.out.println(s1 == s2);//true
         System.out.println(s1 == s3);//false
         System.out.println(s1 == s4);//false
+        System.out.println(s3 == s4);//false
 
         System.out.println("\nuse method `equals`:");
         System.out.println(s1.equals(s2));
         System.out.println(s1.equals(s3));
         System.out.println(s1.equals(s4));
-        //The reason is s1&s2 are in Constant Pool,so the string is unique
-        //But use new to create instance is in heap
+        System.out.println(s3.equals(s4));
 
-        
-        /* */
+        System.out.println("\nChange s3");
+        s3 = s3.intern();
+        System.out.println(s1 == s3);//true
+        System.out.println(s3 == s4);//false
     }
 }
