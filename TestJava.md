@@ -22,6 +22,15 @@ Use the method of string: `length()`(return `int`)
 
     System.out.println(s1.equals(s2));
 
+
+### Concatenate two strings
+Use method`concat()` or operator`+`
+
+`concat()` only accepts one argument and its type must be string.
+
+`+` can concatenate strings and numbers. It will transform the number(int, double etc) into String.
+
+
 #### Differences between `==` and `equals()`
 `==` actually compare the pointers(or its **address**)
 
@@ -54,7 +63,7 @@ The following is explaination of ChatGPT:
 >
 >下面是一个简单的示例，演示了 `intern()` 方法的使用：
 >
->```json
+>```java
 >public class Main {
 >   public static void main(String[] args) {
 >       String str1 = new String("Hello"); // 创建一个新的字符串对象
@@ -71,9 +80,102 @@ The following is explaination of ChatGPT:
 >
 >需要注意的是，`intern()` 方法在实际应用中使用得相对较少，因为它可能会增加字符串常量池的负担。通常情况下，Java 的字符串对象使用常量池中的字符串就已经足够了。
 
-### Concatenate two strings
-Use method`concat()` or operator`+`
 
-`concat()` only accepts one argument and its type must be string.
 
-`+` can concatenate strings and numbers. It will transform the number(int, double etc) to String.
+# Array
+## Basic Informations
+- Its elements are of the **same type**.
+- Its **length cannot be changed**.
+## One-demisional Array
+### Decalaration and Creation
+#### Declaration
+There are two ways:
+1. `int[] arr;`
+2. `int arr[];`
+
+Although these two methods have the same function, we recommend the first one because it's more common and the second reflects the style of C/C++. 
+
+If you only declare an array without initialization, the array is only an "empty shell" and there is **no actual storage space allocated to it**.
+
+#### Initialization
+There are several methods:
+
+1. Direct assignment
+    ```java
+    myArray = new int[]{1, 2, 3, 4, 5};//Directly assign values;
+    ```
+   
+2.  Step-by-step assignment
+    ```java
+    myArray = new int[5]; //allocate the array length
+    myArray[0] = 1;
+    myArray[1] = 2;
+    ```
+3. Using loop
+   ```java
+   myArray = new int[5];
+   for (int i = 0; i < myArray.length; i++){
+        myArray[i] = i + 1;
+   }
+   ```
+
+#### Declare while Initialize
+1. Give length but don't give values
+   ```java
+   int[] myArray = new int[10];//The default value is 0;
+   ```
+2. Array Constant and `new`
+   ```java
+   int[] myArray = new int[] {1, 2, 3, 4, 5};
+   ```
+3. Array Constant // This can only be used in this way;
+   ```java
+   int[] myArray = {1, 2, 3, 4, 5};
+   ```
+
+#### Understand more deeply
+> 是的，您理解得完全正确。
+>
+> 在Java中，变量（例如 `myArray`）本身的引用是存储在栈内存中的。而数组对象（即数组的内容）是存储在堆内存中的。当您创建一个数组时，实际上是在堆内存中分配了一块连续的内存空间来存储数组的元素。
+>
+> 对于数组常量（例如 `{1, 2, 3}`），它们会被存储在常量池中。当您使用数组常量初始化数组时，数组变量（例如 `myArray`）会持有一个指向常量池中数组常量的引用。这意味着数组变量 `myArray` 中存储的是常量池中数组常量的引用，而不是数组常量的实际内容。
+>
+> 总结起来，数组变量存储在栈内存中，数组对象存储在堆内存中，数组变量中存储的是对数组对象的引用，而数组对象中的内容是数组常量的引用。
+
+### Access array elements
+Use index of the array.
+
+Also, accessing an array element beyond the index range will cause `ArrayIndexOutOfBoundsException`.
+
+### Get the length of an array
+Use the array's attribute `length`.
+
+The length of a multidimensional array is the length of first dimension.
+
+## Two-dimensional Array
+### Decalaration and Creation
+#### Declaration
+1. `int[][] myArray;`//more common; recommend
+2. `int myArray[][];`
+
+#### Initialization
+1. `int[][] myArray = {{1, 2, 3}, {4, 5, 6}};`
+2. `int[][] myArray = new int[3][];`
+3. `int[][] myArray = new int[3][3];`
+
+> 不，`int[][] arr = new int[3][]` 这样的语句不会报错。这是因为在 Java 中，可以使用动态初始化来创建一个二维数组，并且可以只指定行数而不指定列数。在这种情况下，只有行数被固定，而列数可以在后续的初始化中确定。
+>
+> 这条语句创建了一个具有 3 行的二维数组，但是每一行的列数是未指定的。这意味着每一行可以有不同的列数。
+>
+> 例如，您可以这样初始化这个二维数组：
+>
+> ```java
+> arr[0] = new int[]{1, 2, 3}; // 第一行有 3 列
+> arr[1] = new int[]{4, 5};    // 第二行有 2 列
+> arr[2] = new int[]{6, 7, 8}; // 第三行有 3 列
+> ```
+>
+> 在这种情况下，每一行的列数是根据实际初始化的情况来确定的，而不是在声明数组时就确定的。
+
+
+## Dynamical Array - ArrayList
