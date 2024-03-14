@@ -59,5 +59,28 @@ public class TestString {
         s3 = s3.intern();
         System.out.println(s1 == s3);//true
         System.out.println(s3 == s4);//false
+
+
+        String myString = new String("hello World");
+        System.out.println(myString.length());
+        System.out.println(myString.toUpperCase());
+        System.out.println(myString.toLowerCase());
+        System.out.println(myString.charAt(3));
+        System.out.println(myString.substring(1, 5));
+        System.out.println(myString.substring(1));
+        // System.out.println(myString.substring(1, 13));
+        //StringIndexOutOfBoundsException
+
+        System.out.println(myString.indexOf('o'));//4
+        System.out.println(myString.indexOf("Hell"));//-1
+        System.out.println(myString.indexOf("llo"));//2
+        System.out.println(myString.indexOf( "World", 6));//6
+
+        String aString = new String("  Good morning, everyone! How are you? ");
+        System.out.println(aString.trim());//Good morning, everyone! How are you?
+
+        String anotheString = new String("I like Java! Java is a great language~");
+        System.out.println(anotheString.replace("Java", "Python"));
+        //I like Python! Python is a great language~
     }
 }
