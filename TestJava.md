@@ -80,7 +80,21 @@ The following is explaination of ChatGPT:
 >
 >需要注意的是，`intern()` 方法在实际应用中使用得相对较少，因为它可能会增加字符串常量池的负担。通常情况下，Java 的字符串对象使用常量池中的字符串就已经足够了。
 
+### Some Common Methods
+| Method | Description |
+|--------|---|
+| `int length()`| return the length of strings|
+| `String toUpperCase()` | convert characters to uppercase|
+| `String toLowerCase()` | convert characters to lowercase|
+| `char charAt(int index)` | return the character at the index|
+| `String subString(int st, int ed)` | return the substring of [st,ed)|
+|`String substring(int st)`| return the substring from st to end |
+|`int indexOf(String s)`| return the index when s first appear|
+|`int indexOf(String s, int i)`| return the index when s first appear after the position of index `i`|
+| `String trim()`| return a new string without leading or trailing spaces|
+|`String replace(String target, String replacement)`| return a new string, repalcing target with replacement|
 
+*Actually, the parameters of method `indexOf` are various, more than 2 as listed.*
 
 # Array
 ## Basic Informations
@@ -94,6 +108,8 @@ There are two ways:
 2. `int arr[];`
 
 Although these two methods have the same function, we recommend the first one because it's more common and the second reflects the style of C/C++. 
+
+What's more, `int[]` more clearly declares its type. That is an array of integer.
 
 If you only declare an array without initialization, the array is only an "empty shell" and there is **no actual storage space allocated to it**.
 
@@ -179,3 +195,97 @@ The length of a multidimensional array is the length of first dimension.
 
 
 ## Dynamical Array - ArrayList
+```java
+import java.util.ArrayList;
+```
+
+### Basic Information
+> 动态数组（Dynamic Array）是一种数据结构，它在内存中分配了一段连续的内存空间，用于存储数据。与静态数组不同的是，动态数组的大小可以在运行时动态地增加或减少，因此它也被称为可变长度数组。
+>
+> 动态数组的主要优点是可以在运行时根据需要调整大小，而无需事先知道数组的最大容量。这使得它在需要频繁插入或删除元素的情况下比静态数组更灵活。
+>
+> 在许多编程语言中，动态数组通常由标准库提供支持，以便简化其使用。例如，在C++中，std::vector是动态数组的一种实现；在Python中，列表（list）就是动态数组的一种表示。
+>
+> 动态数组通常通过以下几种方式实现：
+>
+> 1. **重新分配内存**：当数组需要扩展时，会分配一个更大的内存块，并将原始数据复制到新的内存块中。这个过程可能会很耗时，因为需要遍历整个数组。
+>
+> 2. **增长因子（Growth Factor）**：为了减少重新分配的频率，动态数组通常会按照一定的增长因子来扩展。常见的增长因子有2倍、1.5倍等。例如，如果数组当前已满，那么扩展时可能会将数组大小增加为原来的2倍。
+>
+> 3. **缩小容量**：如果数组中的元素数量显著减少，一些实现会在适当的时机缩小数组的容量，以释放多余的内存空间。
+>
+> 使用动态数组时需要注意的一些问题包括：
+>
+> - **时间复杂度**：动态数组通常能够在均摊意义下提供常数时间的插入、删除操作，但在某些情况下可能会因为重新分配内存而导致较高的时间复杂度。
+>
+> - **空间复杂度**：由于动态数组需要预留一定的额外空间以应对可能的扩展，因此可能会存在一定程度的空间浪费。
+>
+> - **内存碎片**：频繁的内存重新分配可能导致内存碎片的产生，进而影响系统的性能。
+>
+> 总的来说，动态数组是一种常用的数据结构，能够提供灵活性和高效性的平衡，适用于大多数动态数据存储需求。
+
+### Initialization
+`ArrayList<E> myArray = new ArrayList<>();`  
+`<E>` represents a generic type.  
+`E` is a type parameter, representing any type.
+
+```java
+ArrayList<Integer> myArray = new ArrayList<>(); 
+```
+
+### Add and Insert
+Use the method of ArrayList: `add()`
+
+```java
+myArray.add(10);
+myArray.add(12);
+myArray.add(1, 11);
+```
+
+### Get
+Use the method of ArrayList: `get()`
+
+```java
+myArray.get(0);
+```
+
+### Remove
+Use the method of ArrayList: `remove()`
+
+`myArray.remove(index);`
+
+`myArrat.remove(object);`
+
+```java
+myArray.remove(10);
+```
+
+### Get the size of ArrayList
+Use the method of ArrayList: `size()`
+
+```java
+System.out.println(a.size());
+```
+
+
+# File I/O
+## Stream
+> 流（stream）：一组有顺序的、有起点和终点的字节集合，是对数据传输的总称。数据在两个对象之间的传输就称为流。可以将流理解为链接两个水桶的水管。
+>
+> 按照流的传输方法，可以分为**输入流**和**输出流**；按照流的处理对象，又可以分为**字节流**和**字符流**。
+>
+> 流的基本操作有读操作和写操作，从流中取得数据的操作称为读操作，向流中添加数据的操作称为写操作。对输入流只能进行读操作，对输出流只能进行写操作。
+>
+> Java中与IO流相关的共有40多个类...hhh
+>
+*Excerpted from PPT*
+
+## `FileIO.java` Some Common Methods
+You can read its source code and documentation for more information.
+
+| Method | Description|
+| --- | ----- |
+|`void writeStringToFile(String str, String fileName)`|将一个字符串追加地写入指定文件|
+|`char getCharFromFile(int posm String filename)`| 将读取指定文件的第pos个字符|
+|`String getLineFromFile(int pos, Sting fileName)`| 读取文件的第pos行的字符串|
+|`String[] getAllLinesFromFile(String fileName)`| 读取文件中所有行中的字符串，并按照顺序储存在String类型数组中返回|
